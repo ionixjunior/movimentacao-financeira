@@ -64,7 +64,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
           templateUrl: "templates/configuracao.html"
         }
       }
+    })
+
+    .state('app.gerenciamentocategorias', {
+      url: '/gerenciamentocategorias',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/gerenciamentocategorias.html',
+          controller: 'GerenciamentoCategoriasCtrl'
+        }
+      }
     });
+    
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/movimentacao');
 });
