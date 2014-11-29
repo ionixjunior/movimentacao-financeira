@@ -51,7 +51,7 @@ angular.module('starter.controllers', ['ngCordova'])
   };
 
   $scope.carregaUltimasMovimentacoes = function() {
-    var query = 'SELECT movimento.codigo, movimento.valor, movimento.tipo_movimento, movimento.categoria_codigo, movimento.data FROM movimento WHERE movimento.situacao = ? ORDER BY movimento.data DESC, movimento.codigo DESC LIMIT 10';
+    var query = 'SELECT movimento.codigo, movimento.valor, movimento.tipo_movimento, movimento.data, categoria_movimento.nome FROM movimento INNER JOIN categoria_movimento ON (categoria_movimento.codigo = movimento.categoria_codigo) WHERE movimento.situacao = ? ORDER BY movimento.data DESC, movimento.codigo DESC LIMIT 10';
     $cordovaSQLite.execute(db, query, ['A'])
       .then(function(dados) {
         for (var i = 0; i < dados.rows.length; i++) {
