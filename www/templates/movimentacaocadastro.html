@@ -1,0 +1,43 @@
+<ion-view title="Cadastro de movimentação">
+  <ion-content class="has-header">
+    <div class="list">
+      <label class="item item-input item-select">
+	    <span class="input-label">Tipo</span>
+	    <select ng-model="movimento.tipo_movimento">
+	      <option value="1">Despesa</option>
+	      <option value="2">Receita</option>
+	    </select>
+	  </label>
+
+	  <label class="item item-input item-select">
+	    <span class="input-label">Categoria</span>
+	    <select ng-model="movimento.categoria_codigo">
+	      <option value="1">A</option>
+	      <option value="2">B</option>
+	    </select>
+	  </label>
+
+	  <label class="item item-input item-input">
+	    <span class="input-label">Valor</span>
+	    <input type="number" ng-model="movimento.valor">
+	  </label>
+
+	  <label class="item item-input">
+	    <span class="input-label">Data</span>
+	    <input type="date" ng-model="movimento.data">
+	  </label>
+
+	  <label class="item item-input item-select">
+	    <span class="input-label">Status</span>
+	    <select ng-model="movimento.situacao">
+	      <option value="A">Ativo</option>
+	      <option value="I">Inativo</option>
+	    </select>
+	  </label>
+
+	  <button class="button button-block button-positive" ng-click="salvar()">
+	    Salvar
+	  </button>
+	</div>
+  </ion-content>
+</ion-view>

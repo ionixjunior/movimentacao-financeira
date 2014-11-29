@@ -22,8 +22,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
 
     db = $cordovaSQLite.openDB({ name: "controlefinanceiro.db" });
     $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS usuario (codigo INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL, senha TEXT NOT NULL)");
-    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS categoria_movimento (codigo INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL, status TEXT NOT NULL DEFAULT 'A')");
-    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS movimento (codigo INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, valor REAL NOT NULL, tipo INTEGER NOT NULL, categoria_codigo INTEGER NOT NULL, status TEXT NOT NULL DEFAULT 'A', data TEXT NOT NULL, CONSTRAINT fk_movimento_categoria FOREIGN KEY (categoria_codigo) REFERENCES categoria_movimento (codigo) ON DELETE RESTRICT ON UPDATE RESTRICT)");
+    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS categoria_movimento (codigo INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL, situacao TEXT NOT NULL DEFAULT 'A')");
+    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS movimento (codigo INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, valor REAL NOT NULL, tipo_movimento INTEGER NOT NULL, categoria_codigo INTEGER NOT NULL, situacao TEXT NOT NULL DEFAULT 'A', data TEXT NOT NULL, CONSTRAINT fk_movimento_categoria FOREIGN KEY (categoria_codigo) REFERENCES categoria_movimento (codigo) ON DELETE RESTRICT ON UPDATE RESTRICT)");
   });
 })
 
@@ -42,6 +42,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
       views: {
         'menuContent' :{
           templateUrl: "templates/movimentacao.html"
+        }
+      }
+    })
+
+    .state('app.movimentacaocadastro', {
+      url: "/movimentacaocadastro",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/movimentacaocadastro.html",
+          controller: 'MovimentacaoCadastroCtrl'
         }
       }
     })

@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['ngCordova'])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
   // Form data for the login modal
@@ -33,16 +33,24 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
-})
+.controller('MovimentacaoCadastroCtrl', function($scope, $location, $cordovaSQLite) {
+  $scope.movimento = {};
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
+  $scope.salvar = function() {
+    alert(JSON.stringify($scope.movimento));
+    var query = 'INSERT INTO movimento (valor, tipo_movimento, categoria_codigo, situacao, data) VALUES (?, ?, ?, ?, ?)';
+    $cordovaSQLite.execute(db, query, [
+      $scope.movimento.valor,
+      $scope.movimento.tipo_movimento,
+      $scope.movimento.categoria_codigo,
+      $scope.movimento.situacao,
+      $scope.movimento.data
+    ]).then(function(result) {
+      alert(JSON.stringify(result));
+
+      $location.path('/app/movimentacao');
+    }, function(erro) {
+      alert(JSON.stringify(erro));
+    });
+  };
 });
