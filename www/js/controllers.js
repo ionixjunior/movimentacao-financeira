@@ -33,6 +33,24 @@ angular.module('starter.controllers', ['ngCordova'])
   };
 })
 
+.controller('MovimentacaoCtrl', function($scope, $cordovaSQLite) {
+  $scope.movimentacao = [];
+
+  $scope.carregaUltimasMovimentacoes = function() {
+    var query = 'SELECT codigo, valor, tipo_movimento, data FROM movimento WHERE situacao = ? ORDER BY codigo DESC LIMIT 10';
+    $cordovaSQLite.execute(db, query, ['A'])
+      .then(function(dados) {
+        for (var i = 0; i < dados.rows.length; i++) {
+          $scope.movimentacao.push(dados.rows.item(i));
+        }
+      }, function(erro) {
+        alert(JSON.stringify(erro));
+      });
+  };
+
+  $scope.carregaUltimasMovimentacoes();
+})
+
 .controller('MovimentacaoCadastroCtrl', function($scope, $location, $cordovaSQLite) {
   $scope.movimento = {};
 

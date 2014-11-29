@@ -41,7 +41,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
       url: "/movimentacao",
       views: {
         'menuContent' :{
-          templateUrl: "templates/movimentacao.html"
+          templateUrl: "templates/movimentacao.html",
+          controller: 'MovimentacaoCtrl'
         }
       }
     })
