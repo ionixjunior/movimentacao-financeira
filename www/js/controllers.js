@@ -66,19 +66,25 @@ angular.module('starter.controllers', ['ngCordova'])
   $scope.carregaUltimasMovimentacoes();
 })
 
-.controller('MovimentacaoCadastroCtrl', function($scope, $location, $cordovaSQLite) {
+.controller('MovimentacaoCadastroCtrl', function($scope, $location, $cordovaSQLite, $stateParams) {
   $scope.movimento = {};
   $scope.categorias = [];
 
   $scope.salvar = function() {
+    var parametros = [];
     var query = 'INSERT INTO movimento (valor, tipo_movimento, categoria_codigo, situacao, data) VALUES (?, ?, ?, ?, ?)';
-    $cordovaSQLite.execute(db, query, [
-      $scope.movimento.valor,
-      $scope.movimento.tipo_movimento,
-      $scope.movimento.categoria_codigo,
-      $scope.movimento.situacao,
-      $scope.movimento.data
-    ]).then(function(result) {
+    parametros[0] = $scope.movimento.valor;
+    parametros[1] = $scope.movimento.tipo_movimento;
+    parametros[2] = $scope.movimento.categoria_codigo;
+    parametros[3] = $scope.movimento.situacao;
+    parametros[4] = $scope.movimento.data;
+    
+    if ($scope.movimento.codigo !== undefined) {
+      query = 'UPDATE movimento SET valor = ?, tipo_movimento = ?, categoria_codigo = ?, situacao = ?, data = ? WHERE codigo = ?';
+      parametros[5] = $scope.movimento.codigo;
+    }
+
+    $cordovaSQLite.execute(db, query, parametros).then(function(result) {
       $location.path('/app/movimentacao');
     }, function(erro) {
       alert(JSON.stringify(erro));
@@ -96,6 +102,20 @@ angular.module('starter.controllers', ['ngCordova'])
         alert(JSON.stringify(erro));
       });
   };
+
+  $scope.carregaMovimento = function(codigo) {
+    var query = 'SELECT * FROM movimento WHERE codigo = ?';
+    $cordovaSQLite.execute(db, query, [codigo])
+      .then(function(dados) {
+        $scope.movimento = dados.rows.item(0);
+      }, function(erro) {
+        alert(JSON.stringify(erro));
+      });
+  };
+
+  if ($stateParams.codigo !== undefined) {
+    $scope.carregaMovimento($stateParams.codigo);
+  }
 
   $scope.carregaCategorias();
 })

@@ -3,7 +3,7 @@
     <div class="list">
       <label class="item item-input item-select">
 	    <span class="input-label">Tipo</span>
-	    <select ng-model="movimento.tipo_movimento">
+	    <select ng-init="movimento.tipo_movimento" ng-model="movimento.tipo_movimento">
 	      <option value="1">Despesa</option>
 	      <option value="2">Receita</option>
 	    </select>
@@ -11,8 +11,7 @@
 
 	  <label class="item item-input item-select">
 	    <span class="input-label">Categoria</span>
-	    <select ng-model="movimento.categoria_codigo">
-	      <option ng-repeat="categoria in categorias" value="{{categoria.codigo}}">{{categoria.nome}}</option>
+	    <select ng-init="movimento.categoria_codigo" ng-model="movimento.categoria_codigo" ng-options="categoria.codigo as categoria.nome for categoria in categorias">
 	    </select>
 	  </label>
 
@@ -28,11 +27,13 @@
 
 	  <label class="item item-input item-select">
 	    <span class="input-label">Status</span>
-	    <select ng-model="movimento.situacao">
+	    <select ng-init="movimento.situacao" ng-model="movimento.situacao">
 	      <option value="A">Ativo</option>
 	      <option value="I">Inativo</option>
 	    </select>
 	  </label>
+
+	  <input type="hidden" ng-model="movimento.codigo">
 
 	  <button class="button button-block button-positive" ng-click="salvar()">
 	    Salvar

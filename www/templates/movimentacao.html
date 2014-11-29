@@ -22,7 +22,7 @@
 	  </div>
 
 	  <ion-list>
-	    <ion-item ng-repeat="movimento in movimentacao">
+	    <ion-item ng-repeat="movimento in movimentacao" href="#/app/movimentacaocadastro/{{movimento.codigo}}">
 	      <div class="row">
 		    <div class="col">
 		    	<div>{{movimento.data | date}}</div>

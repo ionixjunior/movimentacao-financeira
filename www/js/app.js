@@ -57,6 +57,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
       }
     })
 
+    .state('app.movimentacaoedicao', {
+      url: "/movimentacaocadastro/:codigo",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/movimentacaocadastro.html",
+          controller: 'MovimentacaoCadastroCtrl'
+        }
+      }
+    })
+
     .state('app.configuracao', {
       url: "/configuracao",
       views: {
