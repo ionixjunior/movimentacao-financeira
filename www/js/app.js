@@ -38,7 +38,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
     })
 
     .state('app.movimentacao', {
-      url: "/movimentacao",
+      url: "/movimentacao", 
       views: {
         'menuContent' :{
           templateUrl: "templates/movimentacao.html",
