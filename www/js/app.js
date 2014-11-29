@@ -4,9 +4,11 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers'])
+var db = null;
 
-.run(function($ionicPlatform) {
+angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
+
+.run(function($ionicPlatform, $cordovaSQLite) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -17,6 +19,11 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+
+    db = $cordovaSQLite.openDB({ name: "controlefinanceiro.db" });
+    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS usuario (codigo INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL, senha TEXT NOT NULL)");
+    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS categoria_movimento (codigo INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL, status TEXT NOT NULL DEFAULT 'A')");
+    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS movimento (codigo INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, valor REAL NOT NULL, tipo INTEGER NOT NULL, categoria_codigo INTEGER NOT NULL, status TEXT NOT NULL DEFAULT 'A', data TEXT NOT NULL, CONSTRAINT fk_movimento_categoria FOREIGN KEY (categoria_codigo) REFERENCES categoria_movimento (codigo) ON DELETE RESTRICT ON UPDATE RESTRICT)");
   });
 })
 
