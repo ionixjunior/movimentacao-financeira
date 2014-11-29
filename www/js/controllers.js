@@ -35,9 +35,24 @@ angular.module('starter.controllers', ['ngCordova'])
 
 .controller('MovimentacaoCtrl', function($scope, $cordovaSQLite) {
   $scope.movimentacao = [];
+  $scope.saldo = Number(0);
+
+  $scope.carregaSaldo = function() {
+    var query = 'SELECT (SELECT SUM(valor) FROM movimento WHERE tipo_movimento = ? AND situacao = ?) AS receita, (SELECT SUM(valor) FROM movimento WHERE tipo_movimento = ? AND situacao = ?) AS despesa FROM movimento';
+    
+    $cordovaSQLite.execute(db, query, [2, 'A', 1, 'A'])
+      .then(function(dados) {
+        alert(JSON.stringify(dados.rows.item(0)));
+        if (dados.rows.length > 0) {
+          $scope.saldo = Number(dados.rows.item(0)['receita']) - Number(dados.rows.item(0)['despesa']);
+        }
+      }, function(erro) {
+        alert(JSON.stringify(erro));
+      });
+  };
 
   $scope.carregaUltimasMovimentacoes = function() {
-    var query = 'SELECT codigo, valor, tipo_movimento, data FROM movimento WHERE situacao = ? ORDER BY codigo DESC LIMIT 10';
+    var query = 'SELECT codigo, valor, tipo_movimento, data FROM movimento WHERE situacao = ? ORDER BY data DESC, codigo DESC LIMIT 10';
     $cordovaSQLite.execute(db, query, ['A'])
       .then(function(dados) {
         for (var i = 0; i < dados.rows.length; i++) {
@@ -48,6 +63,7 @@ angular.module('starter.controllers', ['ngCordova'])
       });
   };
 
+  $scope.carregaSaldo();
   $scope.carregaUltimasMovimentacoes();
 })
 
