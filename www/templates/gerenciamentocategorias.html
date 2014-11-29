@@ -9,10 +9,8 @@
   </ion-nav-buttons>
   <ion-content class="has-header">
     <ion-list>
-      <ion-item ng-repeat="categoria in categorias">
-        <a href="#">
-          {{categoria.nome}}
-        </a>
+      <ion-item ng-repeat="categoria in categorias" href="#/app/categoriacadastro/{{categoria.codigo}}">
+        {{categoria.nome}}
       </ion-item>
     </ion-list>
 	</div>

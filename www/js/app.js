@@ -84,6 +84,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
           controller: 'CategoriaCadastroCtrl'
         }
       }
+    })
+
+    .state('app.categoriaedicao', {
+      url: '/categoriacadastro/:codigo',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/categoriacadastro.html',
+          controller: 'CategoriaCadastroCtrl'
+        }
+      }
     });
 
   // if none of the above states are matched, use this as the fallback

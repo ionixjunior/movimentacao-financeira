@@ -3,16 +3,18 @@
     <div class="list">
       <label class="item item-input item-input">
 	    <span class="input-label">Nome</span>
-	    <input type="text" ng-model="categoria_movimento.nome">
+	    <input type="text" ng-model="categoria_movimento.nome" ng-value="categoria_movimento.nome">
 	  </label>
 
 	  <label class="item item-input item-select">
 	    <span class="input-label">Status</span>
-	    <select ng-model="categoria_movimento.situacao">
+	    <select ng-init="categoria_movimento.situacao" ng-model="categoria_movimento.situacao">
 	      <option value="A">Ativo</option>
 	      <option value="I">Inativo</option>
 	    </select>
 	  </label>
+
+	  <input type="hidden" ng-model="categoria_movimento.codigo">
 
 	  <button class="button button-block button-positive" ng-click="salvar()">
 	    Salvar
