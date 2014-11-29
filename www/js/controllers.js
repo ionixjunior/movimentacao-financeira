@@ -68,6 +68,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
 .controller('MovimentacaoCadastroCtrl', function($scope, $location, $cordovaSQLite) {
   $scope.movimento = {};
+  $scope.categorias = [];
 
   $scope.salvar = function() {
     var query = 'INSERT INTO movimento (valor, tipo_movimento, categoria_codigo, situacao, data) VALUES (?, ?, ?, ?, ?)';
@@ -83,6 +84,20 @@ angular.module('starter.controllers', ['ngCordova'])
       alert(JSON.stringify(erro));
     });
   };
+
+  $scope.carregaCategorias = function() {
+    var query = 'SELECT codigo, nome FROM categoria_movimento WHERE situacao = ? ORDER BY nome';
+    $cordovaSQLite.execute(db, query, ['A'])
+      .then(function(dados) {
+        for (var i = 0; i < dados.rows.length; i++) {
+          $scope.categorias.push(dados.rows.item(i));
+        }
+      }, function(erro) {
+        alert(JSON.stringify(erro));
+      });
+  };
+
+  $scope.carregaCategorias();
 })
 
 .controller('GerenciamentoCategoriasCtrl', function($scope, $location, $cordovaSQLite) {

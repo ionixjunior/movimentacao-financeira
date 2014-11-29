@@ -12,8 +12,7 @@
 	  <label class="item item-input item-select">
 	    <span class="input-label">Categoria</span>
 	    <select ng-model="movimento.categoria_codigo">
-	      <option value="1">A</option>
-	      <option value="2">B</option>
+	      <option ng-repeat="categoria in categorias" value="{{categoria.codigo}}">{{categoria.nome}}</option>
 	    </select>
 	  </label>
 
