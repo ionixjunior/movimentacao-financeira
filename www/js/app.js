@@ -74,8 +74,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
           controller: 'GerenciamentoCategoriasCtrl'
         }
       }
+    })
+
+    .state('app.categoriacadastro', {
+      url: '/categoriacadastro',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/categoriacadastro.html',
+          controller: 'CategoriaCadastroCtrl'
+        }
+      }
     });
-    
+
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/movimentacao');
 });
