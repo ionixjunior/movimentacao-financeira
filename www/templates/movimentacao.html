@@ -24,7 +24,10 @@
 	  <ion-list>
 	    <ion-item ng-repeat="movimento in movimentacao">
 	      <div class="row">
-		    <div class="col">{{movimento.data | date}}</div>
+		    <div class="col">
+		    	<div>{{movimento.data | date}}</div>
+		    	<div>{{movimento.categoria_codigo}}</div>
+		    </div>
 		    <div class="col" ng-if="movimento.tipo_movimento == 1" style="color: red">- {{movimento.valor | currency}}</div>
 		    <div class="col" ng-if="movimento.tipo_movimento == 2" style="color: blue">+ {{movimento.valor | currency}}</div>
 		  </div>

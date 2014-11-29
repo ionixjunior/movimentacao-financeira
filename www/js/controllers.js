@@ -52,7 +52,7 @@ angular.module('starter.controllers', ['ngCordova'])
   };
 
   $scope.carregaUltimasMovimentacoes = function() {
-    var query = 'SELECT codigo, valor, tipo_movimento, data FROM movimento WHERE situacao = ? ORDER BY data DESC, codigo DESC LIMIT 10';
+    var query = 'SELECT codigo, valor, tipo_movimento, categoria_codigo, data FROM movimento WHERE situacao = ? ORDER BY data DESC, codigo DESC LIMIT 10';
     $cordovaSQLite.execute(db, query, ['A'])
       .then(function(dados) {
         for (var i = 0; i < dados.rows.length; i++) {
