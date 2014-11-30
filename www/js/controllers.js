@@ -33,7 +33,7 @@ angular.module('starter.controllers', ['ngCordova'])
   };
 })
 
-.controller('MovimentacaoCtrl', function($scope, $cordovaSQLite) {
+.controller('MovimentacaoCtrl', function($scope, $timeout, $cordovaSQLite) {
   $scope.movimentacao = [];
   $scope.saldo = Number(0);
 
@@ -62,8 +62,10 @@ angular.module('starter.controllers', ['ngCordova'])
       });
   };
 
-  $scope.carregaSaldo();
-  $scope.carregaUltimasMovimentacoes();
+  $timeout(function() {
+    $scope.carregaSaldo();
+    $scope.carregaUltimasMovimentacoes();
+  }, 500);
 })
 
 .controller('MovimentacaoCadastroCtrl', function($scope, $location, $cordovaSQLite, $stateParams) {
