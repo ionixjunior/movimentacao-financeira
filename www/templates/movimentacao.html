@@ -14,7 +14,7 @@
 	  </div>
 
 	  <a class="item" href="#">
-	    {{saldo | currency}}
+	    {{saldo | currency: "R$"}}
 	  </a>
 
 	  <div class="item item-divider">
@@ -28,8 +28,8 @@
 		    	<div>{{movimento.data | date}}</div>
 		    	<div>{{movimento.nome}}</div>
 		    </div>
-		    <div class="col" ng-if="movimento.tipo_movimento == 1" style="color: red">- {{movimento.valor | currency}}</div>
-		    <div class="col" ng-if="movimento.tipo_movimento == 2" style="color: blue">+ {{movimento.valor | currency}}</div>
+		    <div class="col" ng-if="movimento.tipo_movimento == 1" style="color: red">- {{movimento.valor | currency: "R$"}}</div>
+		    <div class="col" ng-if="movimento.tipo_movimento == 2" style="color: blue">+ {{movimento.valor | currency: "R$"}}</div>
 		  </div>
 	    </ion-item>
 	    <ion-item class="item-icon-right" href="#/app/movimentacaohistorico">
