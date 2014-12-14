@@ -1,0 +1,1 @@
+angular.module('starter.controllers').controller('CtrlApp', ['$scope', function($scope) {}]);

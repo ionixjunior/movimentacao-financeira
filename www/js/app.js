@@ -34,7 +34,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
       url: "/app",
       abstract: true,
       templateUrl: "templates/menu.html",
-      controller: 'AppCtrl'
+      controller: 'CtrlApp'
     })
 
     .state('app.movimentacao', {
@@ -42,7 +42,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
       views: {
         'menuContent' :{
           templateUrl: "templates/movimentacao.html",
-          controller: 'MovimentacaoCtrl'
+          controller: 'CtrlMovimentacao'
         }
       }
     })
@@ -52,7 +52,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
       views: {
         'menuContent' :{
           templateUrl: "templates/movimentacaocadastro.html",
-          controller: 'MovimentacaoCadastroCtrl'
+          controller: 'CtrlMovimentacaoCadastro'
         }
       }
     })
@@ -62,7 +62,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
       views: {
         'menuContent' :{
           templateUrl: "templates/movimentacaocadastro.html",
-          controller: 'MovimentacaoCadastroCtrl'
+          controller: 'CtrlMovimentacaoCadastro'
         }
       }
     })
@@ -72,7 +72,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
       views: {
         'menuContent' :{
           templateUrl: "templates/movimentacaohistorico.html",
-          controller: 'MovimentacaoHistoricoCtrl'
+          controller: 'CtrlMovimentacaoHistorico'
         }
       }
     })
@@ -91,7 +91,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
       views: {
         'menuContent': {
           templateUrl: 'templates/gerenciamentocategorias.html',
-          controller: 'GerenciamentoCategoriasCtrl'
+          controller: 'CtrlGerenciamentoCategorias'
         }
       }
     })
@@ -101,7 +101,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
       views: {
         'menuContent': {
           templateUrl: 'templates/categoriacadastro.html',
-          controller: 'CategoriaCadastroCtrl'
+          controller: 'CtrlCategoriaCadastro'
         }
       }
     })
@@ -111,7 +111,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
       views: {
         'menuContent': {
           templateUrl: 'templates/categoriacadastro.html',
-          controller: 'CategoriaCadastroCtrl'
+          controller: 'CtrlCategoriaCadastro'
         }
       }
     });
