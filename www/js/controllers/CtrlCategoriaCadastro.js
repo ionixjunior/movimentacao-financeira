@@ -51,5 +51,7 @@ angular.module('starter.controllers').controller('CtrlCategoriaCadastro', ['$sco
 
 	if ($stateParams.codigo !== undefined) {
 		$scope.carregaCategoria($stateParams.codigo);
+	} else {
+		$scope.categoria_movimento.situacao = 'A';
 	}
 }]);

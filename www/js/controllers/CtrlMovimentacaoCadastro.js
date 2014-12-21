@@ -71,6 +71,10 @@ angular.module('starter.controllers').controller('CtrlMovimentacaoCadastro', ['$
 
 	if ($stateParams.codigo !== undefined) {
 		$scope.carregaMovimento($stateParams.codigo);
+	} else {
+		var data = new Date();
+		$scope.movimento.tipo_movimento = 1;
+		$scope.movimento.situacao = 'A';
 	}
 
 	$scope.carregaCategorias();
