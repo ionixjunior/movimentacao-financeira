@@ -1,6 +1,6 @@
 {
   "name": "movimentacao-financeira",
-  "app_id": "",
+  "app_id": "b03f6d14",
   "gulpStartupTasks": [
     "sass",
     "watch"
